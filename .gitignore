@@ -1,0 +1,39 @@
+# --- Data (never commit the dataset — may contain personal/educational data) ---
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.parquet
+*.json
+*.pkl
+*.pickle
+*.db
+*.sqlite
+data/
+datasets/
+
+# --- Models / artifacts ---
+*.joblib
+*.h5
+*.onnx
+models/
+artifacts/
+mlruns/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.env
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
