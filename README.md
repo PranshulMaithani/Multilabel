@@ -9,8 +9,11 @@ and emit an interpretable **0–100 score**, using non-regression methods. Targe
 - **[Project Discussion & Method Plan](docs/CEFR_Project_Discussion.md)** — the full,
   self-contained plan: cascade framing, the two cases, candidate methods, 0–100 conversion,
   interpretability, validation, open decision points, and sources. *Start here.*
-- **[Methods Research](docs/CEFR_Methods_Research.md)** — focused deep-dive on the candidate
-  modeling methods.
+- **[10 Methods — Detailed & Ranked](docs/CEFR_10_Methods_Ranked.md)** — all 10 candidate
+  methods (5 core + 5 simpler) with full per-method approach detail, ranked by chance of
+  clearing 82% accuracy.
+- **[Methods Research](docs/CEFR_Methods_Research.md)** — earlier focused deep-dive on the
+  core candidate methods.
 
 ## Status
 
