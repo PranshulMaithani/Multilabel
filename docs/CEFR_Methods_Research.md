@@ -18,7 +18,7 @@ Predict CEFR proficiency from linguistic/behavioral features and emit a continuo
 | Features | 8–11 **feature groups**; exactly **one** feature chosen per group → 8–11 model inputs |
 | Feature semantics | Within a group, features are alternative proxies for the same construct |
 | Labels available | Raw **6-level CEFR** (A1–C2) **and** a fixed **3-band collapse** |
-| 3-band collapse | `{A1, A2, B1}` < `{B2}` < `{C1, C2}` (fixed by business req; ~equal distribution) |
+| 3-band collapse | `{A1, A2}` < `{B1}` < `{B2, C1, C2}` (confirmed with senior 2026-07-21) |
 | Continuous ground truth | **None** — the 0–100 score must be *derived* from class probabilities |
 | Baseline | Senior reached **77% band accuracy** using regression models |
 | Mandate | Use **non-regression** methods ("regression is old") |
@@ -261,7 +261,7 @@ algorithms, Python libraries, and tradeoffs. Survey and rank — do NOT write a 
 PROBLEM
 - Predict CEFR proficiency from linguistic features, and emit a continuous 0–100 score
   (hard business requirement) with per-"section" interpretability.
-- Labels: raw 6-level CEFR (A1–C2) AND a fixed 3-band collapse {A1,A2,B1} < {B2} < {C1,C2}.
+- Labels: raw 6-level CEFR (A1–C2) AND a fixed 3-band collapse {A1,A2} < {B1} < {B2,C1,C2}.
   Accuracy is measured on the 3 bands; the 6-level labels are available as extra signal.
 - n ≈ 220 total. Features come as 8–11 "feature groups"; exactly one feature is chosen per
   group (each group = alternative proxies for one construct) → 8–11 model inputs.

@@ -4,6 +4,22 @@ CEFR proficiency scoring: predict CEFR bands/levels from 8–11 selected linguis
 and emit an interpretable **0–100 score**, using non-regression methods. Target: beat the
 77% regression baseline to **≥82%** while keeping per-section interpretability.
 
+## Bands (confirmed)
+
+| Band | CEFR levels |
+|---|---|
+| 0 | A1, A2 |
+| 1 | B1 |
+| 2 | B2, C1, C2 |
+
+Pipeline: `features → model → probabilities → 0–100 score → 2 cut-points → 3 bands`.
+
+## Notebook
+
+- **[`notebooks/cefr_10_methods.ipynb`](notebooks/cefr_10_methods.ipynb)** — runs all 10
+  methods over the same train/test split (built from the `split` column). Fill in `df` and
+  `FEATURE_COLS` at the top; everything else is automatic.
+
 ## Documents
 
 - **[Project Discussion & Method Plan](docs/CEFR_Project_Discussion.md)** — the full,
