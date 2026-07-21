@@ -14,22 +14,27 @@ and emit an interpretable **0–100 score**, using non-regression methods. Targe
 
 Pipeline: `features → model → probabilities → 0–100 score → 2 cut-points → 3 bands`.
 
-## Notebook
+## Notebooks
 
-- **[`notebooks/cefr_10_methods.ipynb`](notebooks/cefr_10_methods.ipynb)** — runs all 10
-  methods over the same train/test split (built from the `split` column). Fill in `df` and
-  `FEATURE_COLS` at the top; everything else is automatic.
+- **[`notebooks/cefr_4_methods.ipynb`](notebooks/cefr_4_methods.ipynb)** — the focused set:
+  **Ordinal Random Forest, Ordinal Boosting (LightGBM), EBM, and LDA**, with light
+  hyperparameter tuning and per-method feature importance. *Use this one.* Fill in `df`,
+  `FEATURE_COLS` (and optionally `FEATURE_GROUPS`) at the top; everything else is automatic.
+- **[`notebooks/cefr_10_methods.ipynb`](notebooks/cefr_10_methods.ipynb)** — the wider
+  10-method survey the 4 were chosen from. Same fill-in interface.
 
 ## Documents
 
+- **[The Four Methods, Explained in Full](docs/CEFR_4_Methods_Explained.md)** — deep study
+  guide for the 4-method notebook: what each approach is, the intuition, what we did, and
+  exactly how the 0–100 score and its two split points are produced. *Read this alongside the
+  notebook.*
 - **[Project Discussion & Method Plan](docs/CEFR_Project_Discussion.md)** — the full,
-  self-contained plan: cascade framing, the two cases, candidate methods, 0–100 conversion,
-  interpretability, validation, open decision points, and sources. *Start here.*
+  self-contained plan: cascade framing, candidate methods, 0–100 conversion, interpretability,
+  validation, decision points, and sources.
 - **[10 Methods — Detailed & Ranked](docs/CEFR_10_Methods_Ranked.md)** — all 10 candidate
-  methods (5 core + 5 simpler) with full per-method approach detail, ranked by chance of
-  clearing 82% accuracy.
-- **[Methods Research](docs/CEFR_Methods_Research.md)** — earlier focused deep-dive on the
-  core candidate methods.
+  methods, ranked by chance of clearing 82% accuracy.
+- **[Methods Research](docs/CEFR_Methods_Research.md)** — earlier focused deep-dive.
 
 ## Status
 
