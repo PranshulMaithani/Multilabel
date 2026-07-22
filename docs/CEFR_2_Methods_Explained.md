@@ -6,6 +6,13 @@
 >
 > Last updated: 2026-07-22
 
+> **Note on the baseline notebook.** `cefr_2_methods.ipynb` currently runs a **simplified
+> baseline**: no hyperparameter tuning, cut-points fitted on the **train** scores, and it
+> reports **train / test / full** accuracy only (no cross-validation number). Sections 6, 8
+> and 9 below describe the more rigorous **out-of-fold + tuning** approach — the recommended
+> upgrade once you are past establishing a baseline. `test_acc` is an honest held-out number
+> in both versions.
+
 ---
 
 ## Table of contents

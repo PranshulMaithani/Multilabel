@@ -16,10 +16,11 @@ Pipeline: `features → model → probabilities → 0–100 score → 2 cut-poin
 
 ## Notebooks
 
-- **[`notebooks/cefr_2_methods.ipynb`](notebooks/cefr_2_methods.ipynb)** — the focused set:
-  **Ordinal Random Forest** and **Ordinal Boosting (LightGBM)**, with light hyperparameter
-  tuning and per-method feature importance. *Use this one.* Fill in `df`, `FEATURE_COLS`
-  (and optionally `FEATURE_GROUPS`) at the top; everything else is automatic.
+- **[`notebooks/cefr_2_methods.ipynb`](notebooks/cefr_2_methods.ipynb)** — the focused
+  **baseline**: **Ordinal Random Forest** and **Ordinal Boosting (LightGBM)**. Fixed
+  defaults (no hyperparameter tuning), reports **train / test / full** accuracy (no CV),
+  plus per-method feature importance. *Use this one.* Fill in `df`, `FEATURE_COLS` (and
+  optionally `FEATURE_GROUPS`) at the top; everything else is automatic.
 - **[`notebooks/cefr_10_methods.ipynb`](notebooks/cefr_10_methods.ipynb)** — the wider
   10-method survey the 2 were chosen from. Same fill-in interface.
 
