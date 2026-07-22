@@ -445,12 +445,15 @@ The cross-method comparison table adds an `agreement` column - how many of the t
 found each feature useful. Useful in **both** = core signal; useful in **neither** = a genuine
 drop candidate.
 
-### One single percentage per feature
+### One single percentage per feature - on train, test and full
 For a single, business-friendly number, the notebook converts the (method-averaged)
-permutation importance into a **share of the total**: `importance_pct = importance / sum of
-all importances x 100`, with negatives floored at 0. The column **sums to ~100%**, so you can
-say *"this feature drives 30% of the model's accuracy"* or, rolled up, *"the Vocabulary
-section drives 58%."* This is the number to put in front of stakeholders.
+permutation importance into a **share of the total** (`pct = importance / sum x 100`, with
+negatives floored at 0). It reports this on **three sets** - the training data, the held-out
+test data, and the full dataset - so each feature gets `pct_train`, `pct_test` and `pct_full`,
+each summing to ~100%. You can then say *"this feature drives 30% of the model's accuracy"*
+or, rolled up, *"the Vocabulary section drives 55%."* These are the numbers to put in front
+of stakeholders; `pct_test` is the most honest, `pct_train`/`pct_full` are there for
+comparison.
 
 **We do not use SHAP** in this baseline. SHAP is an alternative that gives exact additive
 per-*learner* contributions, but it explains an internal probability rather than the final
