@@ -445,6 +445,20 @@ The cross-method comparison table adds an `agreement` column - how many of the t
 found each feature useful. Useful in **both** = core signal; useful in **neither** = a genuine
 drop candidate.
 
+### One single percentage per feature
+For a single, business-friendly number, the notebook converts the (method-averaged)
+permutation importance into a **share of the total**: `importance_pct = importance / sum of
+all importances x 100`, with negatives floored at 0. The column **sums to ~100%**, so you can
+say *"this feature drives 30% of the model's accuracy"* or, rolled up, *"the Vocabulary
+section drives 58%."* This is the number to put in front of stakeholders.
+
+**We do not use SHAP** in this baseline. SHAP is an alternative that gives exact additive
+per-*learner* contributions, but it explains an internal probability rather than the final
+banded output, and adds a dependency (and the `interpret`/`shap` stack had version conflicts
+in this environment). Normalised permutation importance is tied directly to the deliverable
+(band accuracy) and needs nothing extra, so it is the better single number here. SHAP is worth
+adding later only if you need per-individual explanations ("why did *this* learner score 62?").
+
 ---
 
 ## 8. Hyperparameter tuning
