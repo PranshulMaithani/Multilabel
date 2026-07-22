@@ -16,19 +16,19 @@ Pipeline: `features → model → probabilities → 0–100 score → 2 cut-poin
 
 ## Notebooks
 
-- **[`notebooks/cefr_4_methods.ipynb`](notebooks/cefr_4_methods.ipynb)** — the focused set:
-  **Ordinal Random Forest, Ordinal Boosting (LightGBM), EBM, and LDA**, with light
-  hyperparameter tuning and per-method feature importance. *Use this one.* Fill in `df`,
-  `FEATURE_COLS` (and optionally `FEATURE_GROUPS`) at the top; everything else is automatic.
+- **[`notebooks/cefr_2_methods.ipynb`](notebooks/cefr_2_methods.ipynb)** — the focused set:
+  **Ordinal Random Forest** and **Ordinal Boosting (LightGBM)**, with light hyperparameter
+  tuning and per-method feature importance. *Use this one.* Fill in `df`, `FEATURE_COLS`
+  (and optionally `FEATURE_GROUPS`) at the top; everything else is automatic.
 - **[`notebooks/cefr_10_methods.ipynb`](notebooks/cefr_10_methods.ipynb)** — the wider
-  10-method survey the 4 were chosen from. Same fill-in interface.
+  10-method survey the 2 were chosen from. Same fill-in interface.
 
 ## Documents
 
-- **[The Four Methods, Explained in Full](docs/CEFR_4_Methods_Explained.md)** — deep study
-  guide for the 4-method notebook: what each approach is, the intuition, what we did, and
-  exactly how the 0–100 score and its two split points are produced. *Read this alongside the
-  notebook.*
+- **[The Two Methods, Explained in Full](docs/CEFR_2_Methods_Explained.md)** — deep study
+  guide for the 2-method notebook: what each approach is, the intuition, what we did, and
+  exactly how the two model scores become a 0–100 number and get split into bands. *Read this
+  alongside the notebook.*
 - **[Project Discussion & Method Plan](docs/CEFR_Project_Discussion.md)** — the full,
   self-contained plan: cascade framing, candidate methods, 0–100 conversion, interpretability,
   validation, decision points, and sources.
