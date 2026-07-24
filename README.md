@@ -23,8 +23,15 @@ Pipeline: `features → model → probabilities → 0–100 score → 2 cut-poin
   optionally `FEATURE_GROUPS`) at the top; everything else is automatic.
 - **[`notebooks/cefr_2_methods_reshaped.ipynb`](notebooks/cefr_2_methods_reshaped.ipynb)** —
   the 2-method baseline **plus score-distribution reshaping** (two variations: a global bell
-  and per-band ranges), graphed and compared. Reshaping is monotonic, so accuracy is identical
-  to the baseline — it only changes the cosmetic 0–100 number.
+  and per-band ranges), graphed and compared. Its last cell **saves all models** to
+  `cefr_models.joblib` for inference. Reshaping is monotonic, so accuracy is identical to the
+  baseline — it only changes the cosmetic 0–100 number.
+- **[`notebooks/cefr_inference.ipynb`](notebooks/cefr_inference.ipynb)** — the **inference
+  pipeline**: loads `cefr_models.joblib` and scores new learners in one call
+  (`score_dataframe`), producing m1/m2, raw/bell/per-band scores, and band per model.
+- **[`notebooks/cefr_common.py`](notebooks/cefr_common.py)** — shared module (the
+  `FrankHallOrdinal` class + scoring/reshaping helpers) imported by both the training and
+  inference notebooks, so saved models load cleanly. Keep it next to the notebooks.
 - **[`notebooks/cefr_10_methods.ipynb`](notebooks/cefr_10_methods.ipynb)** — the wider
   10-method survey the 2 were chosen from. Same fill-in interface.
 
