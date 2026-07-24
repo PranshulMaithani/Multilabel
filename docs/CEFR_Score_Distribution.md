@@ -39,13 +39,22 @@ score ~ 100`. B1 lands near 50. Only the genuinely borderline learners fall in t
 there aren't many - hence the two extreme peaks and the flat middle. The U-shape is honest;
 reshaping it is a **presentation choice**.
 
-## 3a. Variation A - global bell
+## 3a. Variation A - global bell (the chosen output)
 
-Map every learner's score to its **percentile across the whole cohort**, then push that
-percentile through a symmetric **Beta(5, 5)** scaled to 0-100. The output is one clean bell
-centred at 50 (~68% land in 35-65, nobody at 0/100). Simple and familiar, but it **squashes all
-three bands toward the middle** - a clearly-C2 learner drops to ~75-80 and the bands overlap in
-score. Tune with `GLOBAL_BETA` (higher = tighter around 50).
+Map each learner onto a symmetric **Beta(5, 5)** bell scaled to 0-100. Two modes:
+
+- **Balanced (`GLOBAL_BALANCED=True`, default).** Each band is placed into its own equal 1/3
+  **slice** of the bell by its within-band rank. This centres **B1 exactly on 50**, makes the
+  mapping **neutral to the 4:7:7 prevalence** (band 0 being rarer doesn't skew placement), and
+  because the three slices are disjoint the **band boundaries are exactly preserved** - a B1
+  learner can never get an A-score that reads as band 0. Result: band 0 low, B1 ~50, band 2
+  high, all on one bell.
+- **Pooled (`GLOBAL_BALANCED=False`).** One percentile map over all scores; reflects the real
+  prevalence (band 0 lands in the bottom ~22%, so B1 sits a little below 50).
+
+Either way the histogram still shows the real 4:7:7 counts - that is true data, not a bias;
+balancing only de-biases the *mapping*. Tune the bell width with `GLOBAL_BETA` (higher =
+tighter around 50).
 
 ## 3b. Variation B - per-band remap (keeps bands separated)
 

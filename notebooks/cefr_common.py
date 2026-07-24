@@ -87,9 +87,42 @@ def frankhall_cumulative(pipe, X):
 
 
 # ---- reshapers (apply pre-fitted transformers loaded from the bundle) ----
-def apply_global(qt, s, beta_a):
-    p = np.clip(qt.transform(np.asarray(s, float).reshape(-1, 1)).ravel(), _EPS, 1 - _EPS)
-    return 100.0 * _beta.ppf(p, beta_a, beta_a)
+def _bell(p, beta_a):
+    return 100.0 * _beta.ppf(np.clip(p, _EPS, 1 - _EPS), beta_a, beta_a)
+
+
+def apply_global(model, s, beta_a, bands=None):
+    """Global-bell reshape. `model` is ("pooled", qt) or ("balanced", {band: qt}).
+
+    balanced: each band is placed into its own equal 1/K slice of the bell by within-band rank,
+    so B1 is centred on 50, the mapping is neutral to the 4:7:7 prevalence, AND the band
+    boundaries are exactly preserved (disjoint slices). Needs `bands` (the raw-score band of
+    each row).
+    """
+    s = np.asarray(s, float)
+    kind, obj = model
+    if kind == "pooled":
+        return _bell(obj.transform(s.reshape(-1, 1)).ravel(), beta_a)
+    if bands is None:
+        raise ValueError("balanced global reshape needs `bands`")
+    bands = np.asarray(bands)
+    K = len(obj)
+    p = np.empty(len(s), float)
+    for b, qt in obj.items():
+        m = bands == b
+        if not m.any():
+            continue
+        if qt is None:
+            r = np.full(int(m.sum()), 0.5)
+        else:
+            r = np.clip(qt.transform(s[m].reshape(-1, 1)).ravel(), 0.0, 1.0)
+        p[m] = (b + _EPS + r * (1.0 - 2 * _EPS)) / K     # strictly inside the b-th slice
+    return _bell(p, beta_a)
+
+
+def balanced_bell_cuts(beta_a, n_bands=N_BANDS):
+    """Bell-scale values of the K-1 band boundaries for the balanced global reshape."""
+    return tuple(float(_bell(np.array([j / n_bands]), beta_a)[0]) for j in range(1, n_bands))
 
 
 def apply_perband(trans, s, bands, band_ranges, beta_a):
@@ -139,7 +172,7 @@ def score_dataframe(bundle, df, keep_cols=("ciid", "location", "split")):
         raw = proba_to_score(proba, anchors)
         cum = frankhall_cumulative(pipe, X)
         bands = apply_cutpoints(raw, *cuts)
-        bell = apply_global(mdl["reshaper_global"], raw, cfg["global_beta"])
+        bell = apply_global(mdl["reshaper_global"], raw, cfg["global_beta"], bands)
         pband = apply_perband(mdl["reshaper_perband"], raw, bands,
                               cfg["band_ranges"], cfg["band_beta"])
         out[f"{key}_m1"] = np.round(cum[:, 0], 4)
