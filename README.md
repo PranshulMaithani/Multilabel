@@ -32,6 +32,10 @@ Pipeline: `features → model → probabilities → 0–100 score → 2 cut-poin
 - **[`notebooks/cefr_common.py`](notebooks/cefr_common.py)** — shared module (the
   `FrankHallOrdinal` class + scoring/reshaping helpers) imported by both the training and
   inference notebooks, so saved models load cleanly. Keep it next to the notebooks.
+- **[`notebooks/cefr_hierarchical_bell.ipynb`](notebooks/cefr_hierarchical_bell.ipynb)** — a
+  **different** approach: two hierarchical binary models (band 0 vs {1,2}, then band 1 vs 2)
+  whose **confidence log-odds** produce a bell-curve score with **no distribution reshaping**.
+  Standalone. See the doc below.
 - **[`notebooks/cefr_10_methods.ipynb`](notebooks/cefr_10_methods.ipynb)** — the wider
   10-method survey the 2 were chosen from. Same fill-in interface.
 
@@ -44,6 +48,8 @@ Pipeline: `features → model → probabilities → 0–100 score → 2 cut-poin
 - **[Score Distribution Reshaping](docs/CEFR_Score_Distribution.md)** — why raw scores pile up
   at 0/100 and the two reshaping variations (global bell vs per-band ranges), with the safety
   argument that bands/accuracy are unchanged.
+- **[Hierarchical Bell-Curve Score](docs/CEFR_Hierarchical_Bell.md)** — the alternative approach:
+  bell from the models' confidence log-odds (no reshaping), its mechanism and trade-offs.
 - **[Project Discussion & Method Plan](docs/CEFR_Project_Discussion.md)** — the full,
   self-contained plan: cascade framing, candidate methods, 0–100 conversion, interpretability,
   validation, decision points, and sources.
