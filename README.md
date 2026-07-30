@@ -36,6 +36,11 @@ Pipeline: `features → model → probabilities → 0–100 score → 2 cut-poin
   **different** approach: two hierarchical binary models (band 0 vs {1,2}, then band 1 vs 2)
   whose **confidence log-odds** produce a bell-curve score with **no distribution reshaping**.
   Standalone. See the doc below.
+- **[`notebooks/cefr_ebm.ipynb`](notebooks/cefr_ebm.ipynb)** — focused on **EBM (Explainable
+  Boosting Machine)**: results (train/test/full accuracy + confusion matrices), EBM's *native*
+  additive feature importance plus permutation importance on **train and test**, and the
+  score-bin distribution. Standalone; needs `interpret` (pin `interpret-core==0.5.1` if on
+  scipy&lt;1.11).
 - **[`notebooks/cefr_10_methods.ipynb`](notebooks/cefr_10_methods.ipynb)** — the wider
   10-method survey the 2 were chosen from. Same fill-in interface.
 
