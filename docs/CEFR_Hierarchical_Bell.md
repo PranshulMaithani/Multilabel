@@ -1,9 +1,11 @@
 # Hierarchical Bell-Curve Score (alternative approach)
 
 > A different route to a bell-shaped 0-100 score, in `notebooks/cefr_hierarchical_bell.ipynb`.
-> The bell comes from the **models' own confidence** - **no** uniform/quantile reshaping.
+> The **raw** score comes from the models' own confidence (log-odds), and a **Beta quantile
+> reshaping** then gives a clean, controlled bell. The notebook shows raw vs Beta and the
+> previous-vs-new split points.
 >
-> Last updated: 2026-07-24
+> Last updated: 2026-07-25
 
 ## The idea
 
