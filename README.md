@@ -41,6 +41,10 @@ Pipeline: `features → model → probabilities → 0–100 score → 2 cut-poin
   additive feature importance plus permutation importance on **train and test**, and the
   score-bin distribution. Standalone; needs `interpret` (pin `interpret-core==0.5.1` if on
   scipy&lt;1.11).
+- **[`notebooks/cefr_xgboost.ipynb`](notebooks/cefr_xgboost.ipynb)** — a single **XGBoost**
+  direct 3-class multiclass model (band = argmax): train/test/full accuracy + confusion
+  matrices, the 0–100 score, native gain + permutation importance on the full set, and the
+  score-bin distribution. Standalone; needs `xgboost`.
 - **[`notebooks/cefr_10_methods.ipynb`](notebooks/cefr_10_methods.ipynb)** — the wider
   10-method survey the 2 were chosen from. Same fill-in interface.
 
